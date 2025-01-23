@@ -12,8 +12,7 @@ export const ToDoList: FC = () => {
   const [newTodoText, setNewTodoText] = useState('');
   const [filter, setFilter] = useState<'all' | 'completed' | 'active'>('all');
 
-  // Типизируем todos с помощью интерфейса Todo[]
-  const todos = useSelector((state: any) => state.todos.todos); // Или используйте RootState, если у вас есть типизированное состояние
+  const todos = useSelector((state: any) => state.todos.todos); 
   const dispatch = useDispatch();
 
   const handleAddTodo = () => {
@@ -35,14 +34,12 @@ export const ToDoList: FC = () => {
     dispatch(clearTodos());
   };
 
-  // Фильтрация задач по состоянию
   const filteredTodos = todos.filter((todo: Todo) => {
     if (filter === 'completed') return todo.completed;
     if (filter === 'active') return !todo.completed;
     return true;
   });
 
-  // Подсчет оставшихся невыполненных задач
   const remainingCount = todos.filter((todo: Todo) => !todo.completed).length;
 
   return (
